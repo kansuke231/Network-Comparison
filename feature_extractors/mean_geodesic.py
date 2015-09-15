@@ -5,7 +5,6 @@ def mean_geodesic_distance(G,weighted=True):
     input: python i-graph Graph object
     output: the mean geodesic distance (shortest path) of graph G
     """
-
     if weighted:
         weights = "weight" # an attribute for edge weight. You may change this depending on the gml file
     else:
