@@ -39,8 +39,6 @@ def motif_census(G):
     # frequencies for k = 4 motifs
     for i in range(1,12):
         exec("g4_%d = 0"%i)
-    g4_1 = 0
-    g4_4 = 0
 
     # Initialize numpy array X
     X = np.zeros(len(G.vs))
@@ -110,8 +108,8 @@ def motif_census(G):
     g4_7 = N_T_I/3.0 - g4_3/3.0
     g4_8 = N_SuVSv_I/2.0 - g4_6
     g4_9 = (N_I_I_1 - (6*g4_1 + 4*g4_2 + 2*g4_3) - (4*g4_4 + 2*g4_6))/2
-
-    g4_10 = N_I_I - 2*g4_9 # Something is wrong here.
+    g4_10 = N_I_I - 2*g4_9
     g4_11 = scm.comb(V,4,1) - sum([eval("g4_%d"%i) for i in range(1,11)])
 
-    return [g3_1,g3_2,g3_3,g3_4] + [eval("g4_%d"%i) for i in range(1,12)]
+    return [eval("g3_%d"%i) for i in range(1,5)] + [eval("g4_%d"%i) for i in range(1,12)]
+
