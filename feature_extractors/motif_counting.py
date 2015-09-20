@@ -31,11 +31,6 @@ def motif_census(G):
     for i in range(1,4):
         exec("g3_%d = 0"%i)
 
-    # just for explicitness
-    g3_1 = 0
-    g3_2 = 0
-    g3_3 = 0
-
     # frequencies for k = 4 motifs
     for i in range(1,12):
         exec("g4_%d = 0"%i)
@@ -58,7 +53,7 @@ def motif_census(G):
         
         N_u = set(G.neighbors(u))
         N_v = set(G.neighbors(v))
-        
+
         for w in N_u:
             if w == v: continue
             Star_u.add(w); X[w] = 1
@@ -100,14 +95,14 @@ def motif_census(G):
     g3_1 = g3_1/3.0
     g3_2 = g3_2/2.0
     g3_4 = scm.comb(V,3,1) - g3_1 - g3_2 -g3_3
-
+    g4_1 = g4_1/6.0
     g4_2 = N_T_T - 6*g4_1
-    g4_3 = (N_T_SuVSv)/2.0 - 2*g4_2
-    g4_5 = (N_S_S)/3.0 - g4_3/3.0
+    g4_3 = ((N_T_SuVSv) - 4*g4_2)/2.0
+    g4_5 = ((N_S_S) - g4_3)/3.0
     g4_6 = N_Su_Sv - 4*g4_4
-    g4_7 = N_T_I/3.0 - g4_3/3.0
-    g4_8 = N_SuVSv_I/2.0 - g4_6
-    g4_9 = (N_I_I_1 - (6*g4_1 + 4*g4_2 + 2*g4_3) - (4*g4_4 + 2*g4_6))/2
+    g4_7 = (N_T_I - g4_3)/3.0
+    g4_8 = (N_SuVSv_I - 2*g4_6)/2.0
+    g4_9 = (N_I_I_1 - (6*g4_1 + 4*g4_2 + 2*g4_3) - (4*g4_4 + 2*g4_6))/2.0
     g4_10 = N_I_I - 2*g4_9
     g4_11 = scm.comb(V,4,1) - sum([eval("g4_%d"%i) for i in range(1,11)])
 
