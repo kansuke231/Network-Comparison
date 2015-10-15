@@ -26,11 +26,13 @@ class GraphWrapper:
                     flag = True
                     continue
 
+                if "node" in words:
+                    break
+
                 if flag and (len(words) == 2):  #words could be like ['['] after seeing ['graph'], thus len()
                     d[words[0]] = words[1]
 
-                if "node" in words:
-                    break
+
         return d
 
 
@@ -45,17 +47,18 @@ def main():
     """
     for e in wrappedG.G.es:
         print(e["weight"])
-    """
+
 
     for v in wrappedG.G.vs:
         print(v)
-
+    """
     from feature_extractors.mean_degree import mean_degree
     from feature_extractors.mean_geodesic import mean_geodesic_distance
     from feature_extractors.clustering_coefficient import clustering_coeeficient
     from feature_extractors.motif_counting import motif_census, motif_significance, random_motif_census
     from feature_extractors.degree_assortativity import degree_assortativity
 
+    """
     print("mean degree",mean_degree(wrappedG.G))
     print("------------------------------------")
     #print(mean_geodesic_distance(wrappedG.G,weighted=True))
@@ -71,7 +74,7 @@ def main():
     print("degree assortativity",degree_assortativity(wrappedG.G))
     print("------------------------------------")
     #print(wrappedG.G.clusters(mode="STRONG"))
-
+    """
 
 if __name__ == '__main__':
     main()
