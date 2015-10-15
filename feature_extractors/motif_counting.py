@@ -5,6 +5,8 @@ Networks" by Ahmed et al. http://arxiv.org/abs/1506.04322
 
 import numpy as np
 import scipy.misc as scm
+import copy
+import matplotlib.pyplot as plt
 
 def clique_count(G,X,Tri_e):
     cliq_e = 0
@@ -109,4 +111,42 @@ def motif_census(G):
     g4_11 = scm.comb(V,4,1) - sum([eval("g4_%d"%i) for i in range(1,11)])
 
     return [eval("g3_%d"%i) for i in range(1,5)] + [eval("g4_%d"%i) for i in range(1,12)]
+
+
+def random_motif_census(G):
+    # G should be a copied version of the original graph
+    # This function returns a tuple of lists: a list of the mean value of each motif count in random
+    # graphs and that of the standard deviation.
+
+    matrix = []
+    for i in range(10000):
+        G.rewire()
+        result = motif_census(G)
+        matrix.append(result)
+    matrix = np.array(matrix)
+    matrix_T = matrix.T
+    for motif in matrix_T:
+        distribution_plot(motif)
+
+    mean = np.mean(matrix, axis=0)
+    std = np.std(matrix,axis=0)
+    return (mean,std)
+
+def distribution_plot(motif):
+    plt.hist(motif,bins=50,normed = False)
+    plt.xlabel("Counting")
+    plt.ylabel("Frequency")
+    plt.show()
+
+def motif_significance(G):
+
+    new_G = copy.deepcopy(G)
+    new_G.rewire()  # render the graph G a random graph
+
+    G_motif = motif_census(G)
+    new_G_motif_mean, new_G_motif_std = random_motif_census(new_G)
+    diff = map(lambda (x,y): x-y ,zip(G_motif,new_G_motif_mean))
+    Z_score = map(lambda (x,y): round(x/float(y),2) ,zip(diff,new_G_motif_std))
+
+    return Z_score
 
