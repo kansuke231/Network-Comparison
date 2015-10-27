@@ -52,7 +52,7 @@ def motif_census(G):
     for e in G.es:
         u,v = e.tuple
         Star_u = set(); Star_v = set(); Tri_e = set()
-        
+
         N_u = set(G.neighbors(u))
         N_v = set(G.neighbors(v))
 
@@ -81,7 +81,7 @@ def motif_census(G):
         N_Su_Sv += len(Star_u)*len(Star_v)
         N_T_SuVSv += len(Tri_e)*(len(Star_u)+len(Star_v))
         N_S_S += scm.comb(len(Star_u),2,1) + scm.comb(len(Star_v),2,1)
-        
+
         # get unrestricted counts for 4-node disconnected motifs
         N_T_I += len(Tri_e)*(V - len(N_u.union(N_v)))
         N_Su_I = len(Star_u)*(V - len(N_u.union(N_v)))
@@ -125,8 +125,8 @@ def random_motif_census(G):
         matrix.append(result)
     matrix = np.array(matrix)
     matrix_T = matrix.T
-    for motif in matrix_T:
-        distribution_plot(motif)
+    #for motif in matrix_T:
+        #distribution_plot(motif)
 
     mean = np.mean(matrix, axis=0)
     std = np.std(matrix,axis=0)
@@ -146,7 +146,6 @@ def motif_significance(G):
     G_motif = motif_census(G)
     new_G_motif_mean, new_G_motif_std = random_motif_census(new_G)
     diff = map(lambda (x,y): x-y ,zip(G_motif,new_G_motif_mean))
-    Z_score = map(lambda (x,y): round(x/float(y),2) ,zip(diff,new_G_motif_std))
+    Z_score = map(lambda (x,y): round(x/float(y),2) if y > 0 else x ,zip(diff,new_G_motif_std))
 
     return Z_score
-
