@@ -253,6 +253,10 @@ def random_motif_census(G_filepath):
 
     mean = np.mean(matrix, axis=0)
     std = np.std(matrix,axis=0)
+
+    pool.close()
+    pool.join()
+
     return (mean,std)
 
 def distribution_plot(motif):
