@@ -29,6 +29,8 @@ def main():
             and not(file == "MidievalRussiaTrade.gml"):
                 name = file
 		G = igraph.read(pwd+"/gmlFiles/"+name)
+		G.simplify()
+		G.to_undirected()
 		Q = modularity(G)
 		writer.writerow((name,Q))
     f.close()
