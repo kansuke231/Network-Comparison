@@ -18,7 +18,7 @@ def spectral_gap(G):
     spectralGap = 0
     
     for eigenvalue in spectrum:
-        if eigenvalue > 0:
+        if eigenvalue > 10e-9:
             spectralGap = eigenvalue
             break
     return spectralGap
