@@ -3,7 +3,7 @@
 #   harmonic_centrality(G) returns sum of differences of harmonic centrality from maximally central vertex
 #   with all others, divided by this sum of differences on a N-star, which will be (N - 2) / 2
 #
-#   See Freeman's centrality measure extensions to whole networks.
+#   See 'Centrality in Social Networks Conceptual Clarification' (Freeman '78) for centrality measure extensions to whole networks.
 #   Implimented for harmonic centrality by E. Tucker
 #
 
