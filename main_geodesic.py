@@ -1,4 +1,4 @@
-#!/Users/kaik7708/env/bin/python
+#/Users/kaik7708/env/bin/python
 import igraph
 import os
 import operator
