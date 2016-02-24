@@ -5,19 +5,19 @@ import operator
 import csv
 import numpy as np
 import sys
-from feature_extractors.mean_geodesic import mean_geodesic_distance
+from feature_extractors.degree_assortativity import degree_assortativity
 
 def main(filepath):
     pwd = os.getcwd()
-    #filename = os.path.split(filepath)[1]
-    f = open(pwd+"/geodesic/"+filepath+".geo.txt","w")
+    filename = os.path.split(filepath)[1]
+    f = open(pwd+"/assortativity/"+filename+".assortativity.txt","w")
     writer = csv.writer(f)
-    G = igraph.read("/Users/kaik7708/gmlFiles_batch1/"+filepath)
+    G = igraph.read(filepath)
     G.simplify()
     G.to_undirected()
     largest_c = G.clusters(mode="STRONG").giant()
-    mean_geo = mean_geodesic_distance(largest_c)
-    writer.writerow((filepath,mean_geo))
+    A = degree_assortativity(largest_c)
+    writer.writerow((filename,A))
     f.close()
 
 if __name__ == '__main__':

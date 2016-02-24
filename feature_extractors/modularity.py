@@ -1,5 +1,4 @@
 
 def modularity(G):
-	VertexDendrogram = G.community_fastgreedy()
-	VertexClustering = VertexDendrogram.as_clustering()
+	VertexClustering = G.community_multilevel()
 	return VertexClustering.modularity
