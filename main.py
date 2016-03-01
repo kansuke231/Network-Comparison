@@ -1,4 +1,3 @@
-#!/Users/kaik7708/env/bin/python
 
 """
 This main.py serves as a basis for computing a network's feature.
