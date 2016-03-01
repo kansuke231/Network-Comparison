@@ -7,9 +7,6 @@
 ######################################################################
 
 
-
-import igraph
-
 def betweenness_centrality(G):
 
     betweenness = G.betweenness()

@@ -6,8 +6,6 @@ fiedler_eigenvalue(G) returns second smallest Laplacian eigenvalue
 """
 
 import numpy.linalg
-from igraph import *
-import numpy as np
 
 def fiedler_eigenvalue(G):
     

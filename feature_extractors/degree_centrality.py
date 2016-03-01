@@ -7,9 +7,6 @@
 #######################################################################
 
 
-
-import igraph
-
 def degree_centrality(G):
     
     degrees = G.degree(G.vs())

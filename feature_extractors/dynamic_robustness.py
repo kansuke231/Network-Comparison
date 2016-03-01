@@ -6,16 +6,6 @@
 #
 #
 
-import igraph
-import os
-import operator
-import csv
-import numpy as np
-import sys
-
-
-
-
 def dynamic_robustness(G):
     V_set = G.vs()
     dr = 0.0
@@ -26,9 +16,7 @@ def dynamic_robustness(G):
         v_id = v["id"]
         
         v_prime = G_prime.vs.find(id=v_id)
-        
-        
-        
+           
         G_prime.delete_vertices(v_prime)
         
         V_prime = G_prime.vs()
@@ -60,7 +48,7 @@ def dynamic_robustness(G):
                 dr = dr + difference
 
 
-    dymer = 1 / dr
+    dymer = 1.0 / dr
     return dymer
 
 

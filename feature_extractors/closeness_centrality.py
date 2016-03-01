@@ -7,9 +7,6 @@
 #######################################################################
 
 
-
-import igraph
-
 def closeness_centrality(G):
     
     closeness_seq = G.closeness(vertices=None, mode=3, cutoff=None, weights=None, normalized=True)

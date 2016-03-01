@@ -6,9 +6,6 @@ spectral_gap(G) returns smallest nonzero Laplacian eigenvalue
 """
 
 import numpy.linalg
-from igraph import *
-import numpy as np
-
 
 def spectral_gap(G):
     
