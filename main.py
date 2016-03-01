@@ -15,7 +15,7 @@ import csv
 import sys
 
 def main(filepath,feature):
-    pwd = os.getcwd()
+    pwd = os.getcwd() # This should be your home directory (e.g. /Users/blahblah).
     filename = os.path.split(filepath)[1]
     f = open(pwd + "/%s/"%feature + filename + ".%s.txt"%feature,"w")
     writer = csv.writer(f)
