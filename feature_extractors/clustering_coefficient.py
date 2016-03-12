@@ -1,3 +1,3 @@
 
-def clustering_coeeficient(G):
+def clustering_coefficient(G):
     return G.transitivity_undirected()
